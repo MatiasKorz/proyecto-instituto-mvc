@@ -1,0 +1,66 @@
+﻿using INSTITUTO_C.Helpers;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
+
+namespace INSTITUTO_C.ViewModels
+{
+    public class RegistroUsuario
+    {
+
+
+
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [Display(Name = "Carrera")]
+        public string CarreraNombre { get; set; }
+
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = ErrorMesseges.CaracteresMinMax)]
+        [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s']+$", ErrorMessage = ErrorMesseges.SoloLetras)]
+        public string Nombre { get; set; }
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = ErrorMesseges.CaracteresMinMax)]
+        [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s']+$", ErrorMessage = ErrorMesseges.SoloLetras)]
+        public string Apellido { get; set; }
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [RegularExpression(@"^\d+$", ErrorMessage = ErrorMesseges.SoloNumeros)]
+        [StringLength(10, MinimumLength = 7, ErrorMessage = ErrorMesseges.CaracteresMinMax)]
+        public string DNI { get; set; }
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [StringLength(20, MinimumLength = 8, ErrorMessage = ErrorMesseges.CaracteresMinMax)]
+        [RegularExpression(@"^\d+$", ErrorMessage = ErrorMesseges.SoloNumeros)]
+        public string Telefono { get; set; }
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = ErrorMesseges.CaracteresMinMax)]
+        [RegularExpression("^[a-zA-Z0-9 ]+$", ErrorMessage = ErrorMesseges.SoloLetrasNumEsp)]
+        public string Direccion { get; set; }
+
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [EmailAddress(ErrorMessage = ErrorMesseges.NotValid)]
+        [Remote(action: "EmailDisponible", controller:"Account")]
+        public string Email { get; set; }
+
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Password { get; set; }
+
+
+
+        [Required(ErrorMessage = ErrorMesseges.Requerido)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmar contraseña")]
+        [Compare("Password",ErrorMessage = ErrorMesseges.NoMatch)]
+        public string ConfirmacionPassword { get; set; }
+
+    }
+}

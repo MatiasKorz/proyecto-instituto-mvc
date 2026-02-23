@@ -1,0 +1,44 @@
+﻿@model IEnumerable<INSTITUTO_C.Models.Calificacion>
+
+@{
+    ViewData["Title"] = "Calificacion";
+}
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Calificacion</h1>
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Fecha)</th>
+            <th>@Html.DisplayNameFor(model => model.Nota)</th>
+            <th>@Html.DisplayNameFor(model => model.ProfesorId)</th>
+            <th>@Html.DisplayNameFor(model => model.MateriaCursadaId)</th>
+            <th>@Html.DisplayNameFor(model => model.AlumnoId)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nota)</td>
+                <td>@Html.DisplayFor(modelItem => item.Profesor.Apellido)</td>
+                <td>@Html.DisplayFor(modelItem => item.Inscripcion.MateriaCursada.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.Alumno.Apellido)</td>
+                <td>
+                    @if (User.IsInRole("Profesor"))
+                    {
+                        <a asp-action="Edit" asp-route-alumnoId="@item.AlumnoId" asp-route-materiaCursadaId="@item.MateriaCursadaId" class="btn btn-warning btn-sm">Editar</a>
+                    }
+
+                    <a asp-action="Details" asp-route-alumnoId="@item.AlumnoId" asp-route-materiaCursadaId="@item.MateriaCursadaId" class="btn btn-success btn-sm">Detalles</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

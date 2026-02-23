@@ -1,0 +1,47 @@
+﻿@model INSTITUTO_C.Models.Materia
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<<div class="row main-flex-center">
+
+    <div class="col-md-6">
+        <h4>Editar Materia</h4>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoMateria" class="control-label"></label>
+                <input asp-for="CodigoMateria" class="form-control" />
+                <span asp-validation-for="CodigoMateria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CupoMaximo" class="control-label"></label>
+                <input asp-for="CupoMaximo" class="form-control" />
+                <span asp-validation-for="CupoMaximo" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3 d-flex justify-content-between align-content-center">
+                <a class="btn btn-primary" asp-action="Index">Volver</a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

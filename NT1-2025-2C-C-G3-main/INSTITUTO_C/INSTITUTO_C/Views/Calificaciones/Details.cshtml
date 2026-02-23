@@ -1,0 +1,67 @@
+﻿@model INSTITUTO_C.Models.Calificacion
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row main-flex-center">
+
+    <div class="col-md-6">
+        <h4>Detalles Calificaciones</h4>
+        <hr />
+        <dl class="row main-flex-center">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Nota)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Nota)
+            </dd>
+
+            <dt class="col-sm-3">
+                Profesor
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Profesor.Apellido
+            </dd>
+
+            <dt class="col-sm-3">
+                Materia
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Inscripcion.MateriaCursada.Nombre
+            </dd>
+
+            <dt class="col-sm-3">
+                Alumno
+            </dt>
+            <dd class="col-sm-9">
+                @Model.Alumno.Apellido
+            </dd>
+        </dl>
+        <div class="form-group pt-3 d-flex justify-content-between align-content-center">
+            @if (ViewBag.ReturnUrl == "Inscripciones")
+            {
+                <a class="btn btn-primary" asp-controller="Inscripciones" asp-action="Index">Volver</a>
+            }
+            else
+            {
+                <a class="btn btn-primary" asp-action="Index">Volver</a>
+            }
+
+            @if (User.IsInRole("Profesor"))
+            {
+                <a asp-action="Edit" asp-route-alumnoId="@Model.AlumnoId" asp-route-materiaCursadaId="@Model.MateriaCursadaId" class="btn btn-primary">Editar</a>
+            }
+        </div>
+    </div>
+</div>
+
+
+

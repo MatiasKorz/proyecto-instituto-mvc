@@ -1,0 +1,62 @@
+﻿@model INSTITUTO_C.Models.MateriaCursada
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row main-flex-center">
+
+    <div class="col-md-6">
+        <h4>Crear Materia Cursada</h4>
+        <hr />
+        
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MateriaId" class="control-label"></label>
+                <select asp-for="MateriaId" class="form-control" asp-items="ViewBag.MateriaId">
+                    <option value="">Seleccione una materia</option>
+                </select>
+                <span asp-validation-for="MateriaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodigoCursada" class="control-label"></label>
+                <select asp-for="CodigoCursada" class="form-control"
+                        asp-items="Html.GetEnumSelectList<CodigoCursada>()">
+                    <option value="">Seleccione un código</option>
+                </select>
+                <span asp-validation-for="CodigoCursada" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Cuatrimestre" class="control-label"></label>
+                <select asp-for="Cuatrimestre" class="form-control">
+                    <option value="">Seleccione cuatrimestre</option>
+                    <option value="1">1° Cuatrimestre</option>
+                    <option value="2">2° Cuatrimestre</option>
+                </select>
+                <span asp-validation-for="Cuatrimestre" class="text-danger"></span>
+            </div>
+@*             <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+                </label>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="ProfesorId" class="control-label"></label>
+                <select asp-for="ProfesorId" class="form-control" asp-items="ViewBag.ProfesorId">
+                    <option value="">Seleccione un profesor</option>
+                </select>
+                <span asp-validation-for="ProfesorId" class="text-danger"></span>
+            </div>
+            <div class="form-group pt-3 d-flex justify-content-between align-content-center">
+                <a class="btn btn-primary" asp-action="Index">Volver</a>
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

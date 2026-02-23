@@ -1,0 +1,38 @@
+﻿@model INSTITUTO_C.Models.Inscripcion
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row main-flex-center">
+
+    <div class="col-md-6">
+        <h4>Editar Inscripcion</h4>
+        <hr />
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="AlumnoId" />
+            <input type="hidden" asp-for="MateriaCursadaId" />
+
+            <div class="form-group">
+                <label asp-for="AlumnoId" class="control-label">Alumno</label>
+                <select asp-for="AlumnoId" class="form-control" asp-items="ViewBag.AlumnoId"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MateriaCursadaId" class="control-label">Materia</label>
+                <select asp-for="MateriaCursadaId" class="form-control" asp-items="ViewBag.MateriaCursadaId"></select>
+            </div>
+
+            <div class="form-group pt-3 d-flex justify-content-between align-content-center">
+                <a class="btn btn-primary" asp-action="Index">Volver</a>
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
